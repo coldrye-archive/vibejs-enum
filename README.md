@@ -7,6 +7,18 @@
 enums in your Javascript/Coffee-Script application.
 
 
+### Motivation
+
+In 2011 I was looking for a working Enum class and method to create such enums. The first stab
+at this was the enumjs project which had since been abandoned. Regardless to say that since then
+numerous other developers published their own solutions on NPM. Having reviewed a few of them,
+I must say that they as a whole would suit my requirements, yet, with some of these requirements
+still being unfulfilled I must start over from scratch and reimplement the whole shebang,
+especially when targetting multiple platforms such as Meteor Client/Server, Node only and
+Browser only. Besides of that, it will fit nicely into the overall infrastructure of core 
+libraries I am currently setting up for my future projects.
+
+
 ### Features
 
  - TODO
@@ -18,7 +30,7 @@ enums in your Javascript/Coffee-Script application.
 ## LICENSE
 
 
-    Copyright 2014 Carsten Klein
+    Copyright 2011-2014 Carsten Klein
    
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
