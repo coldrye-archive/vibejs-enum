@@ -1,0 +1,116 @@
+
+
+
+= Node - Javascript
+
+== Simple Usage With Aliasing
+
+    require('vibejs-enum');
+    require('vibejs-subclassof'); // merely used for showing that 
+                                  // the declared enum is a subclass
+                                  // of the vibejs.lang.Enum class
+
+    var EErrorCode = enumerate({
+        options : {
+            // best practice for naming your enums is starting out with a capital E
+            name : 'EErrorCode',
+            multiplesOfTwo : false,
+            initialOrdinal : 0
+        },
+
+        // all enum constants must comply to the vibejs.lang.constants.ENUM_CONSTANT_NAME_RE
+        NO_ERROR : 0,          // 0
+        SUCCESS : enumerate.alias('E_NO_ERROR'), // 0
+        MISSING_ARGUMENT : 0,  // 1
+        INVALID_ARGUMENT : 0,  // 2
+        // ...
+    });
+
+    console.log(EErrorCode.values)); // [EErrorCode.NO_ERROR, ...]
+    console.log(EErrorCode.valueOf('SUCCESS'); // SUCCESS
+    console.log(EErrorCode.valueOf(0)); // NO_ERROR
+    console.log(EErrorCode.aliasesFor(EErrorCode.NO_ERROR)); // [EErrorCode.SUCCESS]
+    console.log(EErrorCode.NO_ERROR instanceof EErrorCode); // true
+    console.log(subclassof(EErrorCode, vibejs.lang.Enum)); // true
+
+    // try to instantiate EErrorCode
+    new EErrorCode(); // -> exception
+
+    // EErrorCode and its constant values are frozen so any alterations
+    // will fail, but not necessarily with an exception...
+    delete EErrorCode.SUCCESS; // false
+    EErrorCode.NO_ERROR = 5; // 5
+
+
+== More Elaborate Use With Custom CTOR, Static Properties And Methods And Instance Properties And Methods
+
+    var util = require('util');
+    require('vibejs-enum');
+
+    var EErrorCodeMessage = enumerate({
+        options : {
+            // CTOR functions are realized as mixins and will be applied
+            // to the declared enum's instances using the ctor arguments
+            // provided by each constant declared below
+            ctor : function (message) {
+                Object.defineProperty(this, 'message', {
+                    enumerable : true,
+                    get : function () {
+                        return message;
+                    }
+                });
+            },
+            static : {
+                toFormattedString : function (e, args) {
+                    return util.format.apply(null, e.message, args);
+                }
+            },
+            instance : {
+                toString : function () {
+                    return EErrorCodeMessage.toFormattedString(this);
+                }
+            }
+        },
+        NO_ERROR : {
+            ordinal : EErrorCode.NO_ERROR, // will resolve to NO_ERROR.ordinal
+            ctor : {
+                message : 'No error occurred'
+            }
+        }
+        //, ...
+    });
+
+== Inheriting From an Existing Enum
+
+    require('vibejs-enum');
+
+    var EExtendedErrorCodes = enumerate({
+
+        options : {
+            base : EErrorCode
+
+            // optional custom ctor and static a/o instance methods/properties 
+        },
+
+        EXTENSION_MISMATCH : 0
+
+    });
+
+
+== Exercise
+
+Combine both EErrorCode and EErrorCodeMessage into a single enum.
+
+
+= Node - Coffee-Script
+
+
+= Meteor - Javascript (Client/Server)
+
+See Node - Javascript above lest the require().
+
+
+= Meteor - Coffee-Script (Client/Server)
+
+See Node - Coffee-Script above lest the require().
+

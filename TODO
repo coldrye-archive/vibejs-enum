@@ -1,0 +1,21 @@
+
+TODO
+
+- missing implementation
+
+- missing tests
+
+- updated README
+
+- updated package.json
+
+- updated Gruntfile
+
+- missing meteor tests
+
+- generate changelog from tags
+
+- integrate istanbul
+
+- generate test/coverage result pages
+
