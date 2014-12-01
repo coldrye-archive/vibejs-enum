@@ -165,7 +165,7 @@ unless exports.enumerate?
     # @namespace vibejs.lang
     namespace 'vibejs.lang',
 
-        readonly : true
+        configurable : false
 
         extend :
 
@@ -176,7 +176,7 @@ unless exports.enumerate?
 
     namespace 'vibejs.lang.constants',
 
-        readonly : true
+        configurable : false
 
         extend :
 
