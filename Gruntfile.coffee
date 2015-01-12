@@ -203,6 +203,12 @@ module.exports = (grunt) ->
 
                 meteor : '1.0'
 
+                common :
+
+                    'vibejs:namespaces' : '>=0.0.5'
+
+                    'vibejs:dynclass' : '>=0.0.1'
+
             files :
 
                 common : [
@@ -344,7 +350,7 @@ module.exports = (grunt) ->
 
                 if previousTag is null
 
-                    changelogTask += ":commit:#{tag}"
+                    changelogTask += "::commit"
 
                 else
 

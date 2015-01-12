@@ -1,5 +1,6 @@
 # vibejs-enum
 
+[![Build Status](https://travis-ci.org/vibejs/vibejs-enum.svg?branch=master)](https://travis-ci.org/vibejs/vibejs-enum)
 
 ## Introduction
 
